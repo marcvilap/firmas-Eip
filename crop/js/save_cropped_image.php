@@ -1,72 +1,6 @@
 <?php 
 
 
-
-/*
-if (isset($_FILES['croppedImage'])) {
-    $uploads_dir = 'uploads';
-
-    $tmp_name = $_FILES['croppedImage']['tmp_name'];
-    $unique_name = uniqid() . '.jpg';
-    $save_path = "$uploads_dir/$unique_name";
-
-    // Crea una imagen a partir del archivo subido
-    $sourceImage = imagecreatefromjpeg($tmp_name);
-
-    // Obtiene las dimensiones originales
-    list($sourceWidth, $sourceHeight) = getimagesize($tmp_name);
-
-    // Calcula las nuevas dimensiones para el 90%
-    $newWidth = $sourceWidth * 0.9;
-    $newHeight = $sourceHeight * 0.9;
-
-    // Crea un lienzo del tamaño original
-    $canvas = imagecreatetruecolor($sourceWidth, $sourceHeight);
-
-    // Establece un color de fondo blanco (puedes cambiar esto si lo deseas)
-    $white = imagecolorallocate($canvas, 255, 255, 255);
-    imagefill($canvas, 0, 0, $white);
-
-    // Copia y reescala la imagen original al nuevo lienzo en top 0 y left 0
-    imagecopyresampled($canvas, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $sourceWidth, $sourceHeight);
-    imagedestroy($sourceImage);
-    $sourceImage = $canvas;
-
-    // Continúa con la parte de la marca de agua...
-
-    // Descarga y crea una imagen a partir de la marca de agua
-    $watermarkData = file_get_contents('http://localhost/proyectos/firmas/img/loop2.gif');
-    $watermarkPath = tempnam(sys_get_temp_dir(), 'watermark');
-    file_put_contents($watermarkPath, $watermarkData);
-    $watermarkImage = imagecreatefromgif($watermarkPath);
-
-    list($watermarkWidth, $watermarkHeight) = getimagesize($watermarkPath);
-
-    // Define la posición de la marca de agua.
-    $watermarkPosX = ($sourceWidth - $watermarkWidth);
-    $watermarkPosY = ($sourceHeight - $watermarkHeight);
-
-    imagecopy($sourceImage, $watermarkImage, $watermarkPosX, $watermarkPosY, 0, 0, $watermarkWidth, $watermarkHeight);
-    imagejpeg($sourceImage, $save_path, 100);
-
-    // Libera recursos
-    imagedestroy($sourceImage);
-    imagedestroy($watermarkImage);
-    unlink($watermarkPath);
-
-    echo json_encode(['status' => 'success', 'path' => "crop/js/".$save_path]);
-
-} else {
-    echo json_encode(['status' => 'error', 'message' => "No se recibió ninguna imagen."]);
-}
-
-
-*/
-
-
-
-
-
 if (!isset($_FILES['croppedImage'])) {
     echo json_encode(['status' => 'error', 'message' => "No se recibió ninguna imagen."]);
     exit;
@@ -124,7 +58,7 @@ try {
     }
 
     
-    $watermarkImage = new Imagick( __DIR__ . '\uploads\loop2.gif');
+    $watermarkImage = new Imagick( __DIR__ . '\img\loop2.gif');
 
     if (!$watermarkImage) {
         echo json_encode(['status' => 'error', 'message' => 'Error al cargar la marca de agua.']);
