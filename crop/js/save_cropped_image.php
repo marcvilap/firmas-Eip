@@ -70,7 +70,7 @@ try {
     $newGIF = new Imagick();
     $watermark_frames = $watermarkImage->getNumberImages();
 
-    for ($i = 0; $i < $watermark_frames; $i++) {
+    for ($i = 1; $i < $watermark_frames - 1; $i++) {
         $watermarkImage->setIteratorIndex($i);
         $frame = $watermarkImage->getImage();
 
