@@ -1,1 +1,3 @@
-**/crop/js/img/uploads/*
+# Ignorar todo en la carpeta uploads excepto .gitkeep
+crop/js/img/uploads/*
+!crop/js/img/uploads/.gitkeep
