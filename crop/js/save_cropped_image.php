@@ -60,8 +60,9 @@ try {
         exit;
     }
 
-    
-    $watermarkImage = new Imagick( __DIR__ . '\img\loop2.gif');
+       
+    $watermarkImage = new Imagick(__DIR__ . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'loop2.gif');
+
 
     if (!$watermarkImage) {
         echo json_encode(['status' => 'error', 'message' => 'Error al cargar la marca de agua.']);
