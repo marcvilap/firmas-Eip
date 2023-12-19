@@ -44,6 +44,9 @@ try {
         $originalHeight = $original->getImageHeight();
     }
 
+    $radius = 10; 
+    $original->roundCorners($radius, $radius);
+
     $newWidth = $originalWidth * 0.9;
     $newHeight = $originalHeight * 0.9;
     $original->resizeImage($newWidth, $newHeight, Imagick::FILTER_LANCZOS, 1);
@@ -70,7 +73,7 @@ try {
     $newGIF = new Imagick();
     $watermark_frames = $watermarkImage->getNumberImages();
 
-    for ($i = 1; $i < $watermark_frames - 1; $i++) {
+    for ($i = 3; $i < $watermark_frames - 1; $i++) {
         $watermarkImage->setIteratorIndex($i);
         $frame = $watermarkImage->getImage();
 
